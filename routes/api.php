@@ -1,0 +1,78 @@
+<?php
+
+use App\Http\Controllers\almacenesController;
+use App\Http\Controllers\almacenMaquinasController;
+use App\Http\Controllers\almacenStocksController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\insumosController;
+use App\Http\Controllers\medidasController;
+use App\Http\Controllers\produccionController;
+use App\Http\Controllers\productosController;
+use App\Http\Controllers\productosMedidasController;
+use App\Http\Controllers\userController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+//crud usuario
+Route::post('/users', [UserController::class, 'create']); // Crear
+Route::get('/users', [UserController::class, 'index']); // Obtener
+Route::get('/users/{id}', [UserController::class, 'show']); // Obtener
+Route::put('/users/{id}', [UserController::class, 'update']); // Actualizar
+Route::delete('/users/{id}', [UserController::class, 'destroy']); // Eliminar
+//crud productos
+Route::get('/productos', [productosController::class, 'index']); // Listar
+Route::post('/productos', [productosController::class, 'create']); // Crear
+Route::get('/productos/{id}', [productosController::class, 'show']); // Obtener
+Route::put('/productos/{id}', [productosController::class, 'update']); // Actualizar
+Route::delete('/productos/{id}', [productosController::class, 'destroy']); // Eliminar
+//crud Medidas
+Route::get('/medidas', [medidasController::class, 'index']); // Listar
+Route::post('/medidas', [medidasController::class, 'create']); // Crear
+Route::get('/medidas/{id}', [medidasController::class, 'show']); // Obtener
+Route::put('/medidas/{id}', [medidasController::class, 'update']); // Actualizar
+Route::delete('/medidas/{id}', [medidasController::class, 'destroy']); // Eliminar
+//Crud ProductosMedidas
+Route::get('/productos-medidas', [productosMedidasController::class, 'index']); // Listar
+Route::post('/productos-medidas', [productosMedidasController::class, 'create']); // Crear
+Route::get('/productos-medidas/{id}', [productosMedidasController::class, 'show']); // Obtener
+Route::put('/productos-medidas/{id}', [productosMedidasController::class, 'update']); // Actualizar
+Route::delete('/productos-medidas/{id}', [productosMedidasController::class, 'destroy']); // Eliminar
+//Crud Almacen Maquina
+Route::get('almacen-maquinas', [almacenMaquinasController::class, 'index']); // Listar
+Route::post('almacen-maquinas', [almacenMaquinasController::class, 'create']); // Crear
+Route::get('almacen-maquinas/{id}', [almacenMaquinasController::class, 'show']); // Mostrar
+Route::put('almacen-maquinas/{id}', [almacenMaquinasController::class, 'update']); // Actualizar
+Route::delete('almacen-maquinas/{id}', [almacenMaquinasController::class, 'destroy']); // Eliminar
+//Crud Almacen Stock
+Route::get('almacen-stocks', [almacenStocksController::class, 'index']); // Listar
+Route::post('almacen-stocks', [almacenStocksController::class, 'create']); // Crear
+Route::get('almacen-stocks/{id}', [almacenStocksController::class, 'show']); // Mostrar
+Route::put('almacen-stocks/{id}', [almacenStocksController::class, 'update']); // Actualizar
+Route::delete('almacen-stocks/{id}', [almacenStocksController::class, 'destroy']); // Eliminar
+//Crud Almacenes
+Route::get('almacenes', [almacenesController::class, 'index']); // Listar
+Route::post('almacenes', [almacenesController::class, 'create']); // Crear
+Route::get('almacenes/{id}', [almacenesController::class, 'show']); // Mostrar
+Route::put('almacenes/{id}', [almacenesController::class, 'update']); // Actualizar
+Route::delete('almacenes/{id}', [almacenesController::class, 'destroy']); // Eliminar
+//Crud Insumos
+Route::get('insumos', [insumosController::class, 'index']); // Listar
+Route::post('insumos', [insumosController::class, 'create']); // Crear
+Route::get('insumos/{id}', [insumosController::class, 'show']); // Mostrar
+Route::put('insumos/{id}', [insumosController::class, 'update']); // Actualizar
+Route::delete('insumos/{id}', [insumosController::class, 'destroy']); // Eliminar
+//Crud Produccion
+Route::get('producciones', [produccionController::class, 'index']); // Listar
+Route::post('producciones', [produccionController::class, 'create']); // Crear
+Route::get('producciones/{id}', [produccionController::class, 'show']); // Mostrar
+Route::put('producciones/{id}', [produccionController::class, 'update']); // Actualizar
+Route::delete('producciones/{id}', [produccionController::class, 'destroy']); // Eliminar 
+
+//Autenticacion
+Route::post('login', [AuthController::class, 'login']);   // Ruta para iniciar sesión
+Route::get('me', [AuthController::class, 'me'])->middleware('auth:api'); // Ruta para obtener el usuario autenticado
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api'); // Ruta para cerrar sesión
