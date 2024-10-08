@@ -32,8 +32,6 @@ class userController extends Controller
             'numero_documento' => $request->numero_documento,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'rol' => $request->rol,
-            'estado' => $request->estado,
         ]);
 
         return response()->json(['user' => $user], 201);

@@ -57,4 +57,34 @@ class User extends Authenticatable implements JWTSubject
     {
         return []; 
     }
+
+
+    public function setNombresAttribute($value)
+    {
+        $this->attributes['nombres'] = strtoupper($value);
+    }
+
+    // Mutador para convertir el apellido en mayúsculas
+    public function setApellidosAttribute($value)
+    {
+        $this->attributes['apellidos'] = strtoupper($value);
+    }
+
+    // Mutador para convertir el tipo de documento en mayúsculas
+    public function setTipoDocumentoAttribute($value)
+    {
+        $this->attributes['tipo_documento'] = strtoupper($value);
+    }
+
+    // Mutador para convertir el número de documento en mayúsculas
+    public function setNumeroDocumentoAttribute($value)
+    {
+        $this->attributes['numero_documento'] = strtoupper($value);
+    }
+
+    // Mutador para convertir el email en minúsculas (opcional)
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
 }
