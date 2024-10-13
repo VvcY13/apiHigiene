@@ -9,6 +9,8 @@ use App\Http\Controllers\medidasController;
 use App\Http\Controllers\produccionController;
 use App\Http\Controllers\productosController;
 use App\Http\Controllers\productosMedidasController;
+use App\Http\Controllers\salidaController;
+use App\Http\Controllers\stockgeneralController;
 use App\Http\Controllers\userController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +73,19 @@ Route::post('producciones', [produccionController::class, 'create']); // Crear
 Route::get('producciones/{id}', [produccionController::class, 'show']); // Mostrar
 Route::put('producciones/{id}', [produccionController::class, 'update']); // Actualizar
 Route::delete('producciones/{id}', [produccionController::class, 'destroy']); // Eliminar 
+//Crud StockGeneral
+Route::get('stock-general', [stockgeneralController::class, 'index']);
+Route::post('stock-general/agregar', [StockGeneralController::class, 'agregarStock']);
+Route::post('stock-general/restar', [StockGeneralController::class, 'restarStock']);
+Route::get('stock-general/{id}', [StockGeneralController::class, 'show']);
+Route::put('stock-general/{id}', [StockGeneralController::class, 'update']);
+Route::delete('stock-general/{id}', [StockGeneralController::class, 'destroy']);
+//Salidas
+Route::post('salidas', [salidaController::class, 'registrarSalida']);
+Route::get('salidas', [SalidaController::class, 'index']);
+Route::get('/salidas/{id}', [SalidaController::class, 'show']); // Mostrar salida específica
+Route::put('/salidas/{id}', [SalidaController::class, 'update']); // Actualizar salida
+Route::delete('/salidas/{id}', [SalidaController::class, 'destroy']); // Eliminar salida
 
 //Autenticacion
 Route::post('login', [AuthController::class, 'login']);   // Ruta para iniciar sesión

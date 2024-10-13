@@ -15,20 +15,16 @@ class ProductoSeeder extends Seeder
     {
         DB::table('productos')->insert([
             [
-                'nombre' => 'Chico 45*60',
+                'nombre' => 'Blu',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nombre' => 'Mediano 60*60',
+                'nombre' => 'SuperPet',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'nombre' => 'Grande 90*60',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            
         ]);
     }
 }

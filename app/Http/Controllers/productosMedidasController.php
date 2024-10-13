@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductosMedidasRequest;
 use App\Models\ProductosMedidas;
+use App\Models\StockGeneral;
 use Illuminate\Http\Request;
 
 class productosMedidasController extends Controller
@@ -23,7 +24,30 @@ class productosMedidasController extends Controller
     public function create(ProductosMedidasRequest $request)
     {
         $productoMedida = ProductosMedidas::create($request->validated());
+
+        $this->actualizarStockGeneral($request->id_producto, $request->id_medida, $request->cantidad_unitaria);
+
         return response()->json($productoMedida, 201);
+    }
+    protected function actualizarStockGeneral($id_producto, $id_medida, $cantidad_producida)
+    {
+        // Buscar si ya existe un registro de stock para ese producto y medida
+        $stockGeneral = StockGeneral::where('id_producto', $id_producto)
+                                    ->where('id_medida', $id_medida)
+                                    ->first();
+
+        if ($stockGeneral) {
+            // Si ya existe el registro, sumamos la cantidad producida al stock existente
+            $stockGeneral->stock_total += $cantidad_producida;
+            $stockGeneral->save();
+        } else {
+            // Si no existe, creamos un nuevo registro en stock_general
+            StockGeneral::create([
+                'id_producto' => $id_producto,
+                'id_medida' => $id_medida,
+                'stock_total' => $cantidad_producida
+            ]);
+        }
     }
 
     /**
