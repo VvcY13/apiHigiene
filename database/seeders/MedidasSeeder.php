@@ -15,7 +15,7 @@ class MedidasSeeder extends Seeder
     {
         DB::table('medidas')->insert([
             [
-                'nombreMedida' => 'Chico',
+                'nombreMedida' => '45*60',
                 'largo' => 45.00,
                 'ancho' => 60.00,
                 'cantidad_bolsas' => 20,
@@ -24,7 +24,7 @@ class MedidasSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nombreMedida' => 'Mediano',
+                'nombreMedida' => '60*60',
                 'largo' => 60.00,
                 'ancho' => 60.00,
                 'cantidad_bolsas' =>10,
@@ -33,7 +33,7 @@ class MedidasSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'nombreMedida' => 'Grande',
+                'nombreMedida' => '90*60',
                 'largo' => 90.00,
                 'ancho' => 60.00,
                 'cantidad_bolsas' => 10,
