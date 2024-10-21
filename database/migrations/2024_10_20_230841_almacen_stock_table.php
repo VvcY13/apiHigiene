@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produccions', function (Blueprint $table) {
+        Schema::create('almacen_stock', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_insumo')->constrained('insumos')->onDelete('cascade');
-            $table->integer('cantidad_producida');
-            $table->decimal('diametro_inicial',8,2);
-            $table->decimal('diametro_final',8,2);
+            $table->foreignId('insumo_id')->constrained('insumos')->onDelete('cascade');
+            $table->integer('cantidad')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produccions');
+        Schema::dropIfExists('almacen_stock');
     }
 };

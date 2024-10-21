@@ -15,19 +15,14 @@ class Insumos extends Model
         'diametro_standar', 
         'kilos_standar'
     ];
-
-    public function almacenStocks()
+    public function almacenStock()
     {
-        return $this->hasMany(AlmacenStocks::class, 'id_insumo');
+        return $this->hasOne(AlmacenStock::class);
     }
 
-    public function almacenMaquinas()
+    public function almacenMaquina()
     {
-        return $this->hasMany(AlmacenMaquinas::class, 'id_insumo');
+        return $this->hasOne(AlmacenMaquina::class);
     }
-
-    public function produccions()
-    {
-        return $this->hasMany(Produccion::class, 'id_insumo');
-    }
+   
 }
