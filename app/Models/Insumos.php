@@ -24,5 +24,9 @@ class Insumos extends Model
     {
         return $this->hasOne(AlmacenMaquina::class);
     }
+    public function producciones()
+    {
+        return $this->belongsToMany(Producciones::class, 'insumo_produccion'); // Relación many-to-many
+    }
    
 }

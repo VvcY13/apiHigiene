@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\insumosController;
 use App\Http\Controllers\medidasController;
 use App\Http\Controllers\produccionController;
+use App\Http\Controllers\ProduccionesController;
 use App\Http\Controllers\productosController;
 use App\Http\Controllers\productosMedidasController;
 use App\Http\Controllers\salidaController;
@@ -80,3 +81,11 @@ Route::get('almacen-maquina', [AlmacenMaquinaController::class, 'index']); // Ob
 Route::post('almacen-maquina/traspasar', [AlmacenMaquinaController::class, 'traspasar']); // Transferir insumos a la máquina
 
 Route::get('/almacen_stock/{insumoId}', [AlmacenStockController::class, 'getCantidadDisponible']);
+
+// Ruta para registrar el inicio de la producción
+Route::post('/produccion/inicio', [ProduccionesController::class, 'registrarInicio']);
+
+// Ruta para registrar el fin de la producción
+Route::post('/produccion/fin/{produccion_id}', [ProduccionesController::class, 'registrarFin']);
+
+Route::get('/producciones', [ProduccionesController::class, 'obtenerProducciones']);
